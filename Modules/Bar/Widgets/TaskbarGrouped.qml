@@ -123,7 +123,7 @@ Item {
   onScreenChanged: refreshWorkspaces()
   onHideUnoccupiedChanged: refreshWorkspaces()
 
-  implicitWidth: isVerticalBar ? taskbarGrid.implicitWidth + Style.marginM * 2 : Math.round(taskbarGrid.implicitWidth + Style.marginM * 2)
+  implicitWidth: isVerticalBar ? taskbarGrid.implicitWidth + Style.marginM * 2 : taskbarGrid.implicitWidth
   implicitHeight: isVerticalBar ? Math.round(taskbarGrid.implicitHeight + Style.marginM * 2) : Style.barHeight
 
   Connections {
@@ -268,8 +268,8 @@ Item {
       radius: Style.radiusS
       border.color: workspaceModel.isFocused ? Color.mPrimary : Color.mOutline
       border.width: Style.borderS
-      width: (hasWindows ? iconsFlow.implicitWidth : root.itemSize * 0.8) + (root.isVerticalBar ? Style.marginXS : Style.marginL)
-      height: (hasWindows ? iconsFlow.implicitHeight : root.itemSize * 0.8) + (root.isVerticalBar ? Style.marginL : Style.marginXS)
+      width: (hasWindows ? iconsFlow.implicitWidth : root.itemSize) + (root.isVerticalBar ? Style.marginXS : Style.marginL)
+      height: (hasWindows ? iconsFlow.implicitHeight : root.itemSize) + (root.isVerticalBar ? Style.marginL : Style.marginS)
       color: Style.capsuleColor
 
       MouseArea {
@@ -317,8 +317,8 @@ Item {
 
             property bool itemHovered: false
 
-            width: root.itemSize * 0.8
-            height: root.itemSize * 0.8
+            width: root.itemSize
+            height: root.itemSize
 
             // Smooth scale animation on hover
             scale: itemHovered ? 1.1 : 1.0
@@ -544,7 +544,7 @@ Item {
 
     anchors.verticalCenter: isVerticalBar ? undefined : parent.verticalCenter
     anchors.left: isVerticalBar ? undefined : parent.left
-    anchors.leftMargin: isVerticalBar ? 0 : Style.marginM
+    anchors.leftMargin: isVerticalBar ? 0 : 0
     anchors.horizontalCenter: isVerticalBar ? parent.horizontalCenter : undefined
     anchors.top: isVerticalBar ? parent.top : undefined
     anchors.topMargin: isVerticalBar ? Style.marginM : 0
